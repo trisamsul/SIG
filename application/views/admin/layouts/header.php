@@ -77,7 +77,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url(); ?>admin/changePass" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Change Password</a>
+                  <a href="<?php echo base_url(); ?>admin/changePass" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Ganti Password</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo base_url(); ?>admin/logOut/" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Logout</a>
@@ -119,7 +119,7 @@
         <li class="header">MENU</li>
         <li class="treeview">
           <a href="<?php echo base_url(); ?>admin">
-            <i class="fa fa-home"></i> <span>Home</span></i>
+            <i class="fa fa-home"></i> <span>Beranda</span></i>
           </a>
         </li>
         <li class="treeview">
@@ -129,10 +129,39 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>admin/userAll"><i class="fa fa-th"></i> All User<span class="pull-right-container">
+            <li><a href="<?php echo base_url(); ?>admin/userAll"><i class="fa fa-th"></i> Semua User<span class="pull-right-container">
               <span class="label label-warning pull-right"><?php echo $user; ?></span>
             </span></a></li>
-            <li><a href="<?php echo base_url(); ?>admin/userPost"><i class="fa fa-edit"></i> Add New User</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/userPost"><i class="fa fa-plus"></i> Tambah User</a></li>
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-map-pin"></i>
+            <span>Sub Wilayah Kota</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>admin/swkAll"><i class="fa fa-th"></i> Semua Sub Wilayah Kota<span class="pull-right-container">
+              <span class="label label-warning pull-right"><?php echo $swk; ?></span>
+            </span></a></li>
+			<li><a href="<?php echo base_url(); ?>admin/swkPost"><i class="fa fa-plus"></i> Tambah Sub Wilayah Kota</a></li>
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-dot-circle-o"></i>
+            <span>Kecamatan</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>admin/kecamatanAll"><i class="fa fa-th"></i> Semua Kecamatan<span class="pull-right-container">
+              <span class="label label-warning pull-right"><?php echo $kecamatan; ?></span>
+            </span></a></li>
+			<li><a href="<?php echo base_url(); ?>admin/kualitasAll"><i class="fa fa-tree"></i> Kualitas Lingkungan<span class="pull-right-container">
+              <span class="label label-warning pull-right"><?php echo $kualitas; ?></span>
+            </span></a></li>
+			<li><a href="<?php echo base_url(); ?>admin/kecamatanPost"><i class="fa fa-plus"></i> Tambah Kecamatan</a></li>
           </ul>
         </li>
       </ul>

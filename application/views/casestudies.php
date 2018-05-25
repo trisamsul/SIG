@@ -13,29 +13,33 @@
 				<table id="example" class="table table-striped table-bordered" style="width:100%">
 					<thead>
 						<tr>
+							<th>Kecamatan</th>
 							<th>SWK</th>
-							<th>Location</th>
-							<th>Scale</th>
-							<th>Area</th>
-							<th>Density</th>
+							<th>Skala</th>
+							<th>Luas Wilayah</th>
+							<th>Kepadatan</th>
 						</tr>
 					</thead>
 					<tbody>
+						<?php 
+							foreach($kecamatan as $row){
+						 ?>
 						<tr>
-							<td>Tegalega</td>
-							<td>Tegalega</td>
-							<td>A</td>
-							<td>6000 ha</td>
-							<td>100 ac/100 ha</td>
+							<td><a href="<?php echo base_url(); ?>casestudies/kecamatan/<?php echo $row['kecamatan_id'];?>"><?php echo $row['kecamatan_nama']; ?></td>
+							<td><?php echo $row['swk_nama']; ?></td>
+							<td><?php echo $row['kecamatan_skala']; ?></td>
+							<td><?php echo $row['kecamatan_luas']; ?></td>
+							<td><?php echo $row['kecamatan_kepadatan']; ?></td>
 						</tr>
+						<?php } ?>
 					</tbody>
 					<tfoot>
 						<tr>
+							<th>Kecamatan</th>
 							<th>SWK</th>
-							<th>Location</th>
-							<th>Scale</th>
-							<th>Area</th>
-							<th>Density</th>
+							<th>Skala</th>
+							<th>Luas Wilayah</th>
+							<th>Kepadatan</th>
 						</tr>
 					</tfoot>
 				</table>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class CaseStudies extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,23 +20,17 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('layouts/header');
-		$this->load->view('index');
-		$this->load->view('layouts/footer');
-	}
-	
-	public function casestudies()
-	{
 		$data['kecamatan'] = $this->ModelKecamatan->selectAll()->result_array();
 		$this->load->view('layouts/header');
 		$this->load->view('casestudies',$data);
 		$this->load->view('layouts/footer');
 	}
 	
-	public function about()
+	public function kecamatan($id)
 	{
+		$data['kecamatan'] = $this->ModelKecamatan->selectDetail($id)->row_array();
 		$this->load->view('layouts/header');
-		$this->load->view('about');
+		$this->load->view('kecamatan',$data);
 		$this->load->view('layouts/footer');
 	}
 }

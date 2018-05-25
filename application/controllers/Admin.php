@@ -22,6 +22,9 @@ class Admin extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->head['user'] = $this->ModelUser->selectAll()->num_rows();
+		$this->head['swk'] = $this->ModelSWK->selectAll()->num_rows();
+		$this->head['kecamatan'] = $this->ModelKecamatan->selectAll()->num_rows();
+		$this->head['kualitas'] = $this->ModelKualitasLingkungan->selectAll()->num_rows();
 	}
 	public function index()	{
 		if(is_logged_in()){
@@ -110,5 +113,157 @@ class Admin extends CI_Controller {
 	public function userRemove($id){
 		$this->ModelUser->delete($id);
 		redirect('admin/userAll/delete');
+	}
+	
+	public function kecamatanAll(){
+		$data['all'] = $this->ModelKecamatan->selectAll()->result_array();
+		$this->load->view('admin/layouts/header',$this->head);
+		$this->load->view('admin/kecamatanAll',$data);
+		$this->load->view('admin/layouts/footer');
+	}
+	
+	public function kecamatanPost(){
+		$data['swk'] = $this->ModelSWK->selectAll()->result_array();
+		$this->load->view('admin/layouts/header',$this->head);
+		$this->load->view('admin/kecamatanPost',$data);
+		$this->load->view('admin/layouts/footer');
+	}
+	
+	public function kecamatanAdd(){
+		$data = $this->input->post();
+		
+		unset($data['_wysihtml5_mode']);
+		
+		$config['upload_path']		= './uploads/kecamatan/';
+		$config['allowed_types']	= '*';
+		$config['max_size']			= 0;
+		$config['file_name']		= "kecamatan_".time();
+		
+		$this->load->library('upload', $config);
+		var_dump($_FILES);
+
+		if(!$this->upload->do_upload('photo')){		
+			$error = array('error' => $this->upload->display_errors());
+			
+			print_r($error);
+		}else{
+			$data['kecamatan_gambar'] = $config['file_name'].$this->upload->data('file_ext');
+			
+			$data_kecamatan = array(
+				'kecamatan_nama' => $data['kecamatan_nama'],
+				'kecamatan_swk_id' => $data['kecamatan_swk_id'],
+				'kecamatan_skala' => $data['kecamatan_skala'],
+				'kecamatan_populasi' => $data['kecamatan_populasi'],
+				'kecamatan_luas' => $data['kecamatan_luas'],
+				'kecamatan_kepadatan' => $data['kecamatan_kepadatan'],
+				'kecamatan_rth' => $data['kecamatan_rth'],
+				'kecamatan_rtnh' => $data['kecamatan_rtnh'],
+				'kecamatan_deskripsi' => $data['kecamatan_deskripsi'],
+				'kecamatan_gambar' => $data['kecamatan_gambar']
+			);
+			
+			$insert_id = $this->ModelKecamatan->insert($data_kecamatan);
+			
+			$data_kualitas = array(
+				'kl_kecamatan_id' => $insert_id,
+				'kl_temperatur' => $data['kl_temperatur'],
+				'kl_kecepatan_angin' => $data['kl_kecepatan_angin'],
+				'kl_curah_hujan' => $data['kl_curah_hujan'],
+				'kl_kelembapan' => $data['kl_kelembapan']
+			);
+			
+			$this->ModelKualitasLingkungan->insert($data_kualitas);
+			
+			redirect('admin/kecamatanAll/success');
+		}
+	}
+	
+	public function kecamatanEdit($id){
+		$data['swk'] = $this->ModelSWK->selectAll()->result_array();
+		$data['kecamatan'] = $this->ModelKecamatan->selectById($id)->row_array();
+		$this->load->view('admin/layouts/header',$this->head);
+		$this->load->view('admin/kecamatanEdit',$data);
+		$this->load->view('admin/layouts/footer');
+	}
+	
+	public function kecamatanUpdate(){
+		$data = $this->input->post();
+		$id = $data['kecamatan_id'];
+		unset($data['kecamatan_id']);
+		unset($data['_wysihtml5_mode']);
+
+		$this->ModelKecamatan->update($id, $data);
+		redirect('admin/kecamatanAll/update');
+	}
+	
+	public function kecamatanRemove($id){
+		$this->ModelKualitasLingkungan->deleteByIdKecamatan($id);
+		$this->ModelKecamatan->delete($id);
+		redirect('admin/kecamatanAll/delete');
+	}
+	
+	public function kualitasAll(){
+		$data['all'] = $this->ModelKualitasLingkungan->selectAll()->result_array();
+		$this->load->view('admin/layouts/header',$this->head);
+		$this->load->view('admin/kualitasAll',$data);
+		$this->load->view('admin/layouts/footer');
+	}
+	
+	public function kualitasEdit($id){
+		$data['kualitas'] = $this->ModelKualitasLingkungan->selectById($id)->row_array();
+		$this->load->view('admin/layouts/header',$this->head);
+		$this->load->view('admin/kualitasEdit',$data);
+		$this->load->view('admin/layouts/footer');
+	}
+	
+	public function kualitasUpdate(){
+		$data = $this->input->post();
+		$id = $data['kl_id'];
+		unset($data['kl_id']);
+		unset($data['_wysihtml5_mode']);
+
+		$this->ModelKualitasLingkungan->update($id, $data);
+		redirect('admin/kualitasAll/update');
+	}
+	
+	public function swkAll(){
+		$data['all'] = $this->ModelSWK->selectAll()->result_array();
+		$this->load->view('admin/layouts/header',$this->head);
+		$this->load->view('admin/swkAll',$data);
+		$this->load->view('admin/layouts/footer');
+	}
+	
+	public function swkPost(){
+		$this->load->view('admin/layouts/header',$this->head);
+		$this->load->view('admin/swkPost');
+		$this->load->view('admin/layouts/footer');
+	}
+	
+	public function swkAdd(){
+		$data = $this->input->post();
+		$this->ModelSWK->insert($data);
+		redirect('admin/swkAll/success');
+	}
+	
+	public function swkEdit($id){
+		$data['swk'] = $this->ModelSWK->selectById($id)->row_array();
+		$this->load->view('admin/layouts/header',$this->head);
+		$this->load->view('admin/swkEdit',$data);
+		$this->load->view('admin/layouts/footer');
+	}
+	
+	public function swkUpdate(){
+		$data = $this->input->post();
+		$id = $data['swk_id'];
+		unset($data['swk_id']);
+		unset($data['_wysihtml5_mode']);
+
+		$this->ModelSWK->update($id, $data);
+		redirect('admin/swkAll/update');
+	}
+	
+	public function swkRemove($id){
+		$this->ModelSWK->delete($id);
+		redirect('admin/swkAll/delete');
 	}
 }

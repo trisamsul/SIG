@@ -27,7 +27,35 @@
             <div class="icon">
               <i class="fa fa-user"></i>
             </div>
-            <a href="<?php echo site_url();?>admin/userAll" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo site_url();?>admin/userAll" class="small-box-footer">Info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+		<div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-orange">
+            <div class="inner">
+              <h3><?php echo $swk; ?></h3>
+
+              <p>Sub Wilayah Kota</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-map-pin"></i>
+            </div>
+            <a href="<?php echo site_url();?>admin/swkAll" class="small-box-footer">Info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+		<div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><?php echo $kecamatan; ?></h3>
+
+              <p>Kecamatan</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-dot-circle-o"></i>
+            </div>
+            <a href="<?php echo site_url();?>admin/kecamatanAll" class="small-box-footer">Info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
