@@ -62,7 +62,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url(); ?>assets/images/avatar5.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">Administrator</span>
+              <span class="hidden-xs"><?php echo $this->session->userdata('username'); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -70,8 +70,8 @@
                 <img src="<?php echo base_url(); ?>assets/images/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                  Administrator - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php echo $this->session->userdata('username'); ?>
+                  <!-- <small>Member since Nov. 2012</small> -->
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -80,7 +80,7 @@
                   <a href="<?php echo base_url(); ?>admin/changePass" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Ganti Password</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url(); ?>admin/logOut/" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Logout</a>
+                  <a href="<?php echo base_url(); ?>admin/logOut" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Logout</a>
                 </div>
               </li>
             </ul>
@@ -99,7 +99,7 @@
           <img src="<?php echo base_url(); ?>assets/images/avatar5.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Administrator</p>
+          <p><?php echo $this->session->userdata('username'); ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -122,6 +122,7 @@
             <i class="fa fa-home"></i> <span>Beranda</span></i>
           </a>
         </li>
+        <?php if($this->session->userdata('category') == 1){ ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user"></i>
@@ -135,6 +136,7 @@
             <li><a href="<?php echo base_url(); ?>admin/userPost"><i class="fa fa-plus"></i> Tambah User</a></li>
           </ul>
         </li>
+        <?php } ?>
 		<li class="treeview">
           <a href="#">
             <i class="fa fa-map-pin"></i>

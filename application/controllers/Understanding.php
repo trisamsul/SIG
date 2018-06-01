@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Understanding extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,29 +21,42 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('layouts/header');
-		$this->load->view('index');
+		$this->load->view('understanding/overview');
 		$this->load->view('layouts/footer');
 	}
 	
-	public function casestudies()
-	{
-		$data['kecamatan'] = $this->ModelKecamatan->selectAll()->result_array();
-		$this->load->view('layouts/header');
-		$this->load->view('casestudies',$data);
-		$this->load->view('layouts/footer');
-	}
-	
-	public function about()
+	public function overview()
 	{
 		$this->load->view('layouts/header');
-		$this->load->view('about');
+		$this->load->view('understanding/overview');
 		$this->load->view('layouts/footer');
 	}
 
-	public function stories()
+	public function trends()
 	{
 		$this->load->view('layouts/header');
-		$this->load->view('stories');
+		$this->load->view('understanding/trends');
+		$this->load->view('layouts/footer');
+	}
+
+	public function perceptions()
+	{
+		$this->load->view('layouts/header');
+		$this->load->view('understanding/perceptions');
+		$this->load->view('layouts/footer');
+	}
+
+	public function visualizations()
+	{
+		$this->load->view('layouts/header');
+		$this->load->view('understanding/visualizations');
+		$this->load->view('layouts/footer');
+	}
+
+	public function designtech()
+	{
+		$this->load->view('layouts/header');
+		$this->load->view('understanding/designtech');
 		$this->load->view('layouts/footer');
 	}
 }

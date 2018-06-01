@@ -25,6 +25,15 @@ class CaseStudies extends CI_Controller {
 		$this->load->view('casestudies',$data);
 		$this->load->view('layouts/footer');
 	}
+
+	public function search()
+	{
+		$keyword = $this->input->post('keyword');
+		$data['kecamatan'] = $this->ModelKecamatan->search($keyword)->result_array();
+		$this->load->view('layouts/header');
+		$this->load->view('casestudies',$data);
+		$this->load->view('layouts/footer');
+	}
 	
 	public function kecamatan($id)
 	{

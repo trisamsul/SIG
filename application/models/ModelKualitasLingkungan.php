@@ -15,7 +15,18 @@ class ModelKualitasLingkungan extends CI_Model {
 		$this->db->from($this->tableName);
 		$this->db->join('tb_kecamatan', 'tb_kecamatan.kecamatan_id = tb_kualitas_lingkungan.kl_kecamatan_id');
 		$this->db->limit($from,$offset);
-		$this->db->order_by('kecamatan_nama');
+		$this->db->order_by('kecamatan_id','DESC');
+
+		return $this->db->get();
+	}
+
+	public function selectAllShow($from=0,$offset=0){
+		$this->db->select('*');
+		$this->db->from($this->tableName);
+		$this->db->join('tb_kecamatan', 'tb_kecamatan.kecamatan_id = tb_kualitas_lingkungan.kl_kecamatan_id');
+		$this->db->limit($from,$offset);
+		$this->db->where('kl_status',1);
+		$this->db->order_by('kecamatan_id','DESC');
 
 		return $this->db->get();
 	}
@@ -42,5 +53,13 @@ class ModelKualitasLingkungan extends CI_Model {
 	public function deleteByIdKecamatan($idk){
 		$this->db->where('kl_kecamatan_id',$idk);
 		$this->db->delete($this->tableName);
+	}
+
+	public function statusSet($id,$status){
+		$data = array('kl_status' => $status);
+
+		$this->db->set($data);
+		$this->db->where('kl_id',$id);
+		return $this->db->update($this->tableName);
 	}
 }

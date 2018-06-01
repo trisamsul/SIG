@@ -11,23 +11,25 @@
 							<div class="col-md-12 gtco-footer-link">
 								<h3>Links</h3>
 								<ul class="gtco-list-link">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Measuring</a></li>
-									<li><a href="#">Understanding</a></li>
-									<li><a href="#">About</a></li>
-									<li><a href="#">Case Studies</a></li>
-									<li><a href="#">Stories</a></li>
+									<li><a href="<?php echo base_url(); ?>">Home</a></li>
+									<li><a href="<?php echo base_url(); ?>measuring">Measuring</a></li>
+									<li><a href="<?php echo base_url(); ?>understanding">Understanding</a></li>
+									<li><a href="<?php echo base_url(); ?>about">About</a></li>
+									<li><a href="<?php echo base_url(); ?>casestudies">Case Studies</a></li>
+									<li><a href="<?php echo base_url(); ?>stories">Stories</a></li>
 									<br/>
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4 gtco-footer-subscribe">
-						<form class="form-inline">
+						<div class="form-inline">
+						<?php echo form_open('casestudies/search'); ?>
 						  <div class="form-group">
-						    <input type="email" class="form-control" id="" placeholder="Search Case Studies">
-						  <button type="submit" class="btn btn-primary"> <i class="ti-search icon"></i> </button>
+						    <input type="text" class="form-control" name="keyword" placeholder="Search Case Studies">
+						  	<button type="submit" class="btn btn-primary"> <i class="ti-search icon"></i> </button>
 						  </div>
+						</div>
 						</form>
 					</div>
 				</div>

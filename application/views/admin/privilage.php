@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SIG | Login Admin</title>
+  <title>SIG | Privilage Limit</title>
   <link rel="icon" href="<?php echo base_url(); ?>assets/images/icon.png">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -43,42 +43,15 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Silahkan masuk menggunakan username dan password anda</p>
+    <p class="login-box-msg">Mohon maaf, anda tidak dapat mengakses halaman tersebut.</p>
       <?php if ($this->uri->segment(3) == "failed"){ ?>
       <div class="alert alert-danger" role="alert">
         Maaf username/password yang anda masukkan salah.
       </div>
       <?php } ?>
-    <form action="<?php echo base_url(); ?>admin/auth" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" name="uname">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control password" placeholder="Password" name="pass">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <!-- /.col -->
-        <div class="col-xs-12">
-          <button type="submit" class="btn btn-primary btn-block btn-flat bg-green">Masuk</button>
-        </div>
-        <!-- /.col -->
-      </div>
-    </form>
-    <!--
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
-    </div>
-    -->
-    <!-- /.social-auth-links -->
-    <br>
+      <br/>
     <center>
-        <a href="<?php echo base_url(); ?>"><i class="fa fa-long-arrow-left"></i> Kembali ke halaman utama</a><br>
+        <a href="<?php echo base_url(); ?>admin"><i class="fa fa-long-arrow-left"></i> Kembali ke beranda admin</a><br>
     </center>
 
   </div>

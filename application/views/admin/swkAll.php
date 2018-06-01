@@ -15,7 +15,13 @@
     <section class="content">
       <?php if ($this->uri->segment(3) == "success"){ ?>
       <div class="alert alert-success" role="alert">
-        Sub Wilayah Kota berhasil ditambahkan
+          <?php 
+          if($this->session->userdata('category') != 1){ 
+            echo "Sub Wilayah Kota berhasil diajukan. Menunggu persetujuan superadmin.";
+          }else{
+            echo "Sub Wilayah Kota berhasil ditambahkan.";
+          }
+          ?>
       </div>
       <?php }else if($this->uri->segment(3) == "delete"){ ?>
         <div class="alert alert-danger" role="alert">
@@ -53,7 +59,14 @@
                     <td><a href="#">Lokasi</a></td>
                     <td>
                       <button type="button" title="Edit" class="btn btn-sm bg-orange" onclick="location.href='<?php echo base_url();?>admin/swkEdit/<?php echo $row['swk_id'];?>'"><i class="fa fa-edit"></i></button>
-					  <button type="button" title="Delete" class="btn btn-sm bg-red" data-toggle="modal" data-target="#modal-danger"><i class="fa fa-trash"></i></button>
+                      <?php if($this->session->userdata('category') == 1){ ?>
+                      <?php if($row['swk_status'] == 0){ ?>
+                      <button type="button" title="Show" class="btn btn-sm bg-green" onclick="location.href='<?php echo base_url();?>admin/swkStatusSet/<?php echo $row['swk_id'];?>/1'"><i class="fa fa-eye"></i></button>
+                      <?php }else{ ?>
+                        <button type="button" title="Hide" class="btn btn-sm bg-blue" onclick="location.href='<?php echo base_url();?>admin/swkStatusSet/<?php echo $row['swk_id'];?>/0'"><i class="fa fa-eye-slash"></i></button>
+                      <?php } ?>
+					            <button type="button" title="Delete" class="btn btn-sm bg-red" onclick="location.href='<?php echo base_url();?>admin/swkRemove/<?php echo $row['swk_id'];?>'"><i class="fa fa-trash"></i></button>
+                      <?php } ?>
                     </td>
                 </tr>
                 <?php } ?>
@@ -80,24 +93,3 @@
   </div>
   <!-- /.content-wrapper -->
   
-  <div class="modal modal-danger fade" id="modal-danger">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title">Perhatian!</h4>
-		  </div>
-		  <div class="modal-body">
-			<p>Apakah anda yakin untuk menghapus data ini?</p>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-outline"onclick="location.href='<?php echo base_url();?>admin/swkRemove/<?php echo $row['swk_id'];?>'">Ya</button>
-			<button type="button" class="btn btn-outline" data-dismiss="modal" >Tidak</button>
-		  </div>
-		</div>
-		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->

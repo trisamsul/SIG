@@ -51,6 +51,13 @@
                     <td><?php echo $row['kl_kelembapan']; ?></td>
                     <td>
                       <button type="button" title="Edit" class="btn btn-sm bg-orange" onclick="location.href='<?php echo base_url();?>admin/kualitasEdit/<?php echo $row['kl_id'];?>'"><i class="fa fa-edit"></i></button>
+                      <?php if($this->session->userdata('category') == 1){ ?>
+                      <?php if($row['kl_status'] == 0){ ?>
+                        <button type="button" title="Show" class="btn btn-sm bg-green" onclick="location.href='<?php echo base_url();?>admin/kualitasStatusSet/<?php echo $row['kl_id'];?>/1'"><i class="fa fa-eye"></i></button>
+                      <?php }else{ ?>
+                        <button type="button" title="Hide" class="btn btn-sm bg-blue" onclick="location.href='<?php echo base_url();?>admin/kualitasStatusSet/<?php echo $row['kl_id'];?>/0'"><i class="fa fa-eye-slash"></i></button>
+                      <?php } ?>
+                      <?php } ?>
                     </td>
                 </tr>
                 <?php } ?>

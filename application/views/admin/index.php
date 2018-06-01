@@ -16,12 +16,12 @@
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
+        <?php if($this->session->userdata('category') == 1){ ?>
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3><?php echo $user; ?></h3>
-
               <p>User</p>
             </div>
             <div class="icon">
@@ -30,7 +30,8 @@
             <a href="<?php echo site_url();?>admin/userAll" class="small-box-footer">Info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-		<div class="col-lg-3 col-xs-6">
+        <?php } ?>
+		    <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-orange">
             <div class="inner">
@@ -44,7 +45,7 @@
             <a href="<?php echo site_url();?>admin/swkAll" class="small-box-footer">Info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-		<div class="col-lg-3 col-xs-6">
+		    <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -65,4 +66,3 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  

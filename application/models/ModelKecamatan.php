@@ -15,7 +15,18 @@ class ModelKecamatan extends CI_Model {
 		$this->db->from($this->tableName);
 		$this->db->join('tb_swk', 'tb_swk.swk_id = tb_kecamatan.kecamatan_swk_id');
 		$this->db->limit($from,$offset);
-		$this->db->order_by('kecamatan_nama');
+		$this->db->order_by('kecamatan_id','DESC');
+
+		return $this->db->get();
+	}
+
+	public function selectAllShow($from=0,$offset=0){
+		$this->db->select('*');
+		$this->db->from($this->tableName);
+		$this->db->join('tb_swk', 'tb_swk.swk_id = tb_kecamatan.kecamatan_swk_id');
+		$this->db->limit($from,$offset);
+		$this->db->where('kecamatan_status',1);
+		$this->db->order_by('kecamatan_id','DESC');
 
 		return $this->db->get();
 	}
@@ -54,5 +65,23 @@ class ModelKecamatan extends CI_Model {
 		$this->db->join('tb_swk', 'tb_swk.swk_id = tb_kecamatan.kecamatan_swk_id');
 
 		return $this->db->get();
+	}
+
+	public function search($keyword){
+		$this->db->select('*');
+		$this->db->from($this->tableName);
+		$this->db->like('kecamatan_nama',$keyword);
+		$this->db->join('tb_swk', 'tb_swk.swk_id = tb_kecamatan.kecamatan_swk_id');
+		$this->db->order_by('kecamatan_nama');
+
+		return $this->db->get();
+	}
+
+	public function statusSet($id,$status){
+		$data = array('kecamatan_status' => $status);
+
+		$this->db->set($data);
+		$this->db->where('kecamatan_id',$id);
+		return $this->db->update($this->tableName);
 	}
 }

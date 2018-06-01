@@ -61,7 +61,7 @@
 					</td>
                     <td><?php echo $row['user_lastlogin']; ?></td>
                     <td>
-                       <button type="button" title="Delete" class="btn btn-sm bg-red" data-toggle="modal" data-target="#modal-danger"><i class="fa fa-trash"></i></button>
+                       <button type="button" title="Delete" class="btn btn-sm bg-red" onclick="location.href='<?php echo base_url();?>admin/userRemove/<?php echo $row['user_id'];?>'"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 <?php } ?>
@@ -88,25 +88,3 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
-  <div class="modal modal-danger fade" id="modal-danger">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title">Perhatian!</h4>
-		  </div>
-		  <div class="modal-body">
-			<p>Apakah anda yakin untuk menghapus data ini?</p>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-outline"onclick="location.href='<?php echo base_url();?>admin/userRemove/<?php echo $row['user_id'];?>'">Ya</button>
-			<button type="button" class="btn btn-outline" data-dismiss="modal" >Tidak</button>
-		  </div>
-		</div>
-		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->

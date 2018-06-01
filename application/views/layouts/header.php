@@ -80,27 +80,28 @@
 					</div>
 					<div class="col-xs-8 text-right menu-1">
 						<ul>
-							<li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
-							<li class="has-dropdown">
-								<a href="<?php echo base_url(); ?>measuring">Measuring</a>
+							<li <?php if(is_null($this->uri->segment(1))) echo "class='active'"; ?>><a href="<?php echo base_url(); ?>">Home</a></li>
+							<li class="has-dropdown <?php if($this->uri->segment(1) == "measuring") echo "active"; ?>">
+								<a  href="<?php echo base_url(); ?>measuring">Measuring</a>
 								<ul class="dropdown">
 									<li><a href="<?php echo base_url(); ?>measuring/introduction">Introduction</a></li>
 									<li><a href="<?php echo base_url(); ?>measuring/metrics">Metrics</a></li>
 									<li><a href="<?php echo base_url(); ?>measuring/scale">Scale</a></li>
 								</ul>
 							</li>
-							<li class="has-dropdown">
-								<a href="#">Understandings</a>
+							<li class="has-dropdown <?php if($this->uri->segment(1) == "understanding") echo "active"; ?>">
+								<a href="<?php echo base_url(); ?>understanding">Understandings</a>
 								<ul class="dropdown">
-									<li><a href="#">Overview</a></li>
-									<li><a href="#">Trends</a></li>
-									<li><a href="#">Measuring + Visualizations</a></li>
-									<li><a href="#">Design + Technology</a></li>
+									<li><a href="<?php echo base_url(); ?>understanding/overview">Overview</a></li>
+									<li><a href="<?php echo base_url(); ?>understanding/trends">Trends</a></li>
+									<li><a href="<?php echo base_url(); ?>understanding/perceptions">Perceptions</a></li>
+									<li><a href="<?php echo base_url(); ?>understanding/visualizations">Measuring + Visualizations</a></li>
+									<li><a href="<?php echo base_url(); ?>understanding/designtech">Design + Technology</a></li>
 								</ul>
 							</li>
-							<li><a href="<?php echo base_url(); ?>about">About</a></li>
-							<li><a href="<?php echo base_url(); ?>casestudies" class="menu-highlight">Case Studies</a></li>
-							<li><a href="#" class="menu-highlight">Stories</a></li>
+							<li <?php if($this->uri->segment(1) == "about") echo "class='active'"; ?>><a href="<?php echo base_url(); ?>about">About</a></li>
+							<li <?php if($this->uri->segment(1) == "casestudies") echo "class='active'"; ?>><a href="<?php echo base_url(); ?>casestudies" class="menu-highlight">Case Studies</a></li>
+							<li <?php if($this->uri->segment(1) == "stories") echo "class='active'"; ?>><a href="<?php echo base_url(); ?>stories" class="menu-highlight">Stories</a></li>
 						</ul>
 					</div>
 				</div>
